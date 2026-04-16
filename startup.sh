@@ -74,27 +74,27 @@ DIFFUSION_MODELS=(
 )
 
 BBOX_0=(
-    "https://huggingface.co/gazsuv/pussydetectorv4/resolve/main/face_yolov8s.pt"
+    "https://huggingface.co/vilone60/bbox23/resolve/main/Eyes.pt"
 )
 
 BBOX_1=(
-    "https://huggingface.co/gazsuv/pussydetectorv4/resolve/main/femaleBodyDetection_yolo26.pt"
+    "https://huggingface.co/vilone60/bbox23/resolve/main/Face.pt"
 )
 
 BBOX_2=(
-    "https://huggingface.co/vilone60/bbox/resolve/main/female-breast-v4.7.pt"
+    "https://huggingface.co/vilone60/bbox23/resolve/main/Foot.pt"
 )
 
 BBOX_3=(
-    "https://huggingface.co/gazsuv/pussydetectorv4/resolve/main/nipples_yolov8s.pt"
+    "https://huggingface.co/vilone60/bbox23/resolve/main/Hands.pt"
 )
 
 BBOX_4=(
-    "https://huggingface.co/vilone60/bbox/resolve/main/vagina-v4.1.pt"
+    "https://huggingface.co/vilone60/bbox23/resolve/main/Nipples.pt"
 )
 
 BBOX_5=(
-    "https://huggingface.co/gazsuv/xmode/resolve/main/assdetailer.pt"
+    "https://huggingface.co/vilone60/bbox23/resolve/main/Penis.pt"
 )
 SAM_PTH=(
     "https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/sams/sam_vit_b_01ec64.pth"
@@ -109,7 +109,7 @@ BBOX_7=(
 )
 
 BBOX_8=(
-    "https://huggingface.co/gazsuv/pussydetectorv4/resolve/main/FacesV1.pt"
+    "https://huggingface.co/vilone60/bbox23/resolve/main/Pussy.pt"
 )
 
 BBOX_9=(
@@ -117,7 +117,7 @@ BBOX_9=(
 )
 
 BBOX_10=(
-    "https://huggingface.co/AunyMoons/loras-pack/blob/main/foot-yolov8l.pt"
+    "https://huggingface.co/vilone60/bbox23/resolve/main/Pussy2.pt"
 )
 
 UPSCALER_MODELS=(
