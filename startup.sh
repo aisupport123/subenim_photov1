@@ -38,6 +38,7 @@ NODES=(
     "https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes"
     "https://github.com/PozzettiAndrea/ComfyUI-DepthAnythingV3"
     "https://github.com/PGCRT/CRT-Nodes"
+    "https://github.com/aisupport123/nsfw_lora/tree/main/ComfyUI-darkHUB"
 )
 
 # ЗАГРУЗКА ФАЙЛОВ НУЖНЫХ
@@ -47,14 +48,11 @@ CLIP_MODELS=(
 
 CKPT_MODELS=(
     "https://huggingface.co/cyberdelia/CyberRealisticPony/resolve/main/CyberRealisticPony_V16.0_FP32.safetensors"
+    "https://huggingface.co/vilone60/flux_nsfw/resolve/main/gonzalomoXLFluxPony_v60PhotoXLDMD.safetensors"
 )
 
 FUN_MODELS=(
     "https://huggingface.co/alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union-2.1/resolve/main/Z-Image-Turbo-Fun-Controlnet-Union-2.1.safetensors"
-)
-
-TEXT_ENCODERS=(
-    "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors"
 )
 
 UNET_MODELS=(
@@ -67,6 +65,8 @@ VAE_MODELS=(
 
 LORAS=(
     "https://huggingface.co/vilone60/bbox/resolve/main/lenovo_flux_klein9b.safetensors"
+    "https://huggingface.co/vilone60/flux_nsfw/resolve/main/Realism%20Lora%20By%20Stable%20Yogi_V3_Lite.safetensors"
+    "https://huggingface.co/vilone60/flux_nsfw/resolve/main/realisticAnatomy-by-darkHUB.safetensors"
 )
 
 DIFFUSION_MODELS=(
@@ -132,8 +132,8 @@ function provisioning_start() {
     echo ""
     echo "##############################################"
     echo "# FUCK THIS WORLD                            #"
-    echo "# DURDOM PHOTO GENERATOR V1 2025-2026        #"
-    echo "# BY RUSLAN & MAPICH                         #"
+    echo "# subenim PHOTO v2                           #"
+    echo "# BY @againstdrugs                           #"
     echo "##############################################"
     echo ""
 
@@ -144,7 +144,6 @@ function provisioning_start() {
     provisioning_get_pip_packages
 
     provisioning_get_files "${COMFYUI_DIR}/models/clip"               "${CLIP_MODELS[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/text_encoders"     "${TEXT_ENCODERS[@]}"
     provisioning_get_files "${COMFYUI_DIR}/models/unet"               "${UNET_MODELS[@]}"
     provisioning_get_files "${COMFYUI_DIR}/models/vae"                "${VAE_MODELS[@]}"
     provisioning_get_files "${COMFYUI_DIR}/models/ckpt"               "${CKPT_MODELS[@]}"
