@@ -38,7 +38,7 @@ NODES=(
     "https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes"
     "https://github.com/PozzettiAndrea/ComfyUI-DepthAnythingV3"
     "https://github.com/PGCRT/CRT-Nodes"
-    "https://github.com/aisupport123/nsfw_lora/tree/main/ComfyUI-darkHUB"
+    "https://github.com/aisupport123/flux_nsfw"
 )
 
 # ЗАГРУЗКА ФАЙЛОВ НУЖНЫХ
@@ -132,7 +132,7 @@ function provisioning_start() {
     echo ""
     echo "##############################################"
     echo "# FUCK THIS WORLD                            #"
-    echo "# subenim PHOTO v2                           #"
+    echo "# subenim photO v2  2026-2027                #"
     echo "# BY @againstdrugs                           #"
     echo "##############################################"
     echo ""
@@ -167,7 +167,7 @@ function provisioning_start() {
     provisioning_get_files "${COMFYUI_DIR}/models/upscale_models"     "${UPSCALER_MODELS[@]}"
 
     echo ""
-    echo "DURDOM настроил → Starting ComfyUI..."
+    echo "subenim настроил → Starting ComfyUI..."
     echo ""
 }
 
@@ -252,7 +252,17 @@ if [[ ! -f /.noprovisioning ]]; then
     provisioning_start
 fi
 
+echo -e "${MAGENTA}"
+echo "███████╗██╗   ██╗██████╗ ███████╗███╗   ██╗██╗███╗   ███╗"
+echo "██╔════╝██║   ██║██╔══██╗██╔════╝████╗  ██║██║████╗ ████║"
+echo "███████╗██║   ██║██████╔╝█████╗  ██╔██╗ ██║██║██╔████╔██║"
+echo "╚════██║██║   ██║██╔══██╗██╔══╝  ██║╚██╗██║██║██║╚██╔╝██║"
+echo "███████║╚██████╔╝██████╔╝███████╗██║ ╚████║██║██║ ╚═╝ ██║"
+echo "╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═╝╚═╝     ╚═╝"
+echo -e "${NC}"
+echo -e "${CYAN}[subenim] >> SYSTEM BOOT <<${NC}"
+
 # Запуск ComfyUI
-echo "=== DURDOM запускает ComfyUI ==="
+echo "=== subenim запускает ComfyUI ==="
 cd "${COMFYUI_DIR}"
 python main.py --listen 0.0.0.0 --port 8188
