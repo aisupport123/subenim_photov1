@@ -7,8 +7,8 @@ COMFYUI_DIR="${WORKSPACE}/ComfyUI"
 
 echo "=== subenim запускает PHOTO GENERATOR V1 ==="
 
-APT_PACKAGES=()           # если нужно — добавь sudo apt install ...
-PIP_PACKAGES=()           # глобальные pip пакеты, если сверх requirements
+APT_PACKAGES=()
+PIP_PACKAGES=()
 
 NODES=(
     "https://github.com/ltdrdata/ComfyUI-Manager"
@@ -32,7 +32,6 @@ NODES=(
     "https://github.com/plugcrypt/CRT-Nodes"
     "https://github.com/EllangoK/ComfyUI-post-processing-nodes"
     "https://github.com/Fannovel16/comfyui_controlnet_aux"
-    "https://github.com/rgthree/rgthree-comfy"
     "https://github.com/Starnodes2024/ComfyUI_StarNodes"
     "https://github.com/DesertPixelAi/ComfyUI-Desert-Pixel-Nodes"
     "https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes"
@@ -41,7 +40,6 @@ NODES=(
     "https://github.com/aisupport123/flux_nsfw"
 )
 
-# ЗАГРУЗКА ФАЙЛОВ НУЖНЫХ
 CLIP_MODELS=(
     "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors"
 )
@@ -73,51 +71,22 @@ DIFFUSION_MODELS=(
     "https://huggingface.co/T5B/Z-Image-Turbo-FP8/resolve/main/z-image-turbo-fp8-e4m3fn.safetensors"
 )
 
-BBOX_0=(
+BBOX_MODELS=(
     "https://huggingface.co/vilone60/bbox23/resolve/main/Eyes.pt"
-)
-
-BBOX_1=(
     "https://huggingface.co/vilone60/bbox23/resolve/main/Face.pt"
-)
-
-BBOX_2=(
     "https://huggingface.co/vilone60/bbox23/resolve/main/Foot.pt"
-)
-
-BBOX_3=(
     "https://huggingface.co/vilone60/bbox23/resolve/main/Hands.pt"
-)
-
-BBOX_4=(
     "https://huggingface.co/vilone60/bbox23/resolve/main/Nipples.pt"
+    "https://huggingface.co/vilone60/bbox23/resolve/main/Penis.pt"
+    "https://huggingface.co/gazsuv/pussydetectorv4/resolve/main/Eyeful_v2-Paired.pt"
+    "https://huggingface.co/gazsuv/pussydetectorv4/resolve/main/Eyes.pt"
+    "https://huggingface.co/vilone60/bbox23/resolve/main/Pussy.pt"
+    "https://huggingface.co/gazsuv/pussydetectorv4/resolve/main/hand_yolov8s.pt"
+    "https://huggingface.co/vilone60/bbox23/resolve/main/Pussy2.pt"
 )
 
-BBOX_5=(
-    "https://huggingface.co/vilone60/bbox23/resolve/main/Penis.pt"
-)
 SAM_PTH=(
     "https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/sams/sam_vit_b_01ec64.pth"
-)
-
-BBOX_6=(
-    "https://huggingface.co/gazsuv/pussydetectorv4/resolve/main/Eyeful_v2-Paired.pt"
-)
-
-BBOX_7=(
-    "https://huggingface.co/gazsuv/pussydetectorv4/resolve/main/Eyes.pt"
-)
-
-BBOX_8=(
-    "https://huggingface.co/vilone60/bbox23/resolve/main/Pussy.pt"
-)
-
-BBOX_9=(
-    "https://huggingface.co/gazsuv/pussydetectorv4/resolve/main/hand_yolov8s.pt"
-)
-
-BBOX_10=(
-    "https://huggingface.co/vilone60/bbox23/resolve/main/Pussy2.pt"
 )
 
 UPSCALER_MODELS=(
@@ -143,28 +112,18 @@ function provisioning_start() {
     provisioning_get_nodes
     provisioning_get_pip_packages
 
-    provisioning_get_files "${COMFYUI_DIR}/models/clip"               "${CLIP_MODELS[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/unet"               "${UNET_MODELS[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/vae"                "${VAE_MODELS[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/ckpt"               "${CKPT_MODELS[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/model_patches"      "${FUN_MODELS[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/diffusion_models"   "${DIFFUSION_MODELS[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/loras"              "${LORAS[@]}"
-
-    provisioning_get_files "${COMFYUI_DIR}/models/ultralytics/bbox"   "${BBOX_0[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/ultralytics/bbox"   "${BBOX_1[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/ultralytics/bbox"   "${BBOX_2[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/ultralytics/bbox"   "${BBOX_3[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/ultralytics/bbox"   "${BBOX_4[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/ultralytics/bbox"   "${BBOX_5[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/ultralytics/bbox"   "${BBOX_6[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/ultralytics/bbox"   "${BBOX_7[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/ultralytics/bbox"   "${BBOX_8[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/ultralytics/bbox"   "${BBOX_9[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/ultralytics/bbox"   "${BBOX_10[@]}"
-    provisioning_get_files "${COMFYUI_DIR}/models/sams"   "${SAM_PTH[@]}"
-    
-    provisioning_get_files "${COMFYUI_DIR}/models/upscale_models"     "${UPSCALER_MODELS[@]}"
+    # Все загрузки файлов параллельно
+    provisioning_get_files "${COMFYUI_DIR}/models/clip"               "${CLIP_MODELS[@]}" &
+    provisioning_get_files "${COMFYUI_DIR}/models/unet"               "${UNET_MODELS[@]}" &
+    provisioning_get_files "${COMFYUI_DIR}/models/vae"                "${VAE_MODELS[@]}" &
+    provisioning_get_files "${COMFYUI_DIR}/models/ckpt"               "${CKPT_MODELS[@]}" &
+    provisioning_get_files "${COMFYUI_DIR}/models/model_patches"      "${FUN_MODELS[@]}" &
+    provisioning_get_files "${COMFYUI_DIR}/models/diffusion_models"   "${DIFFUSION_MODELS[@]}" &
+    provisioning_get_files "${COMFYUI_DIR}/models/loras"              "${LORAS[@]}" &
+    provisioning_get_files "${COMFYUI_DIR}/models/ultralytics/bbox"   "${BBOX_MODELS[@]}" &
+    provisioning_get_files "${COMFYUI_DIR}/models/sams"               "${SAM_PTH[@]}" &
+    provisioning_get_files "${COMFYUI_DIR}/models/upscale_models"     "${UPSCALER_MODELS[@]}" &
+    wait
 
     echo ""
     echo "subenim настроил → Starting ComfyUI..."
@@ -174,15 +133,15 @@ function provisioning_start() {
 function provisioning_clone_comfyui() {
     if [[ ! -d "${COMFYUI_DIR}" ]]; then
         echo "subenim клонирует ComfyUI..."
-        git clone https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_DIR}"
+        git clone --depth=1 https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_DIR}"
     fi
     cd "${COMFYUI_DIR}"
 }
 
 function provisioning_install_base_reqs() {
     if [[ -f requirements.txt ]]; then
-        echo "subenim установливает base requirements..."
-        pip install --no-cache-dir -r requirements.txt
+        echo "subenim устанавливает base requirements..."
+        pip install --no-cache-dir -q -r requirements.txt
     fi
 }
 
@@ -196,7 +155,7 @@ function provisioning_get_apt_packages() {
 function provisioning_get_pip_packages() {
     if [[ ${#PIP_PACKAGES[@]} -gt 0 ]]; then
         echo "subenim устанавливает extra pip packages..."
-        pip install --no-cache-dir "${PIP_PACKAGES[@]}"
+        pip install --no-cache-dir -q "${PIP_PACKAGES[@]}"
     fi
 }
 
@@ -204,24 +163,29 @@ function provisioning_get_nodes() {
     mkdir -p "${COMFYUI_DIR}/custom_nodes"
     cd "${COMFYUI_DIR}/custom_nodes"
 
+    # Клонируем все ноды параллельно
     for repo in "${NODES[@]}"; do
         dir="${repo##*/}"
         path="./${dir}"
 
         if [[ -d "$path" ]]; then
-            echo "Updating node: $dir"
-            (cd "$path" && git pull --ff-only 2>/dev/null || { git fetch && git reset --hard origin/main; })
+            (cd "$path" && git pull --ff-only 2>/dev/null || { git fetch && git reset --hard origin/main; }) &
         else
-            echo "Cloning node: $dir"
-            git clone "$repo" "$path" --recursive || echo " [!] Clone failed: $repo"
-        fi
-
-        requirements="${path}/requirements.txt"
-        if [[ -f "$requirements" ]]; then
-            echo "Installing deps for $dir..."
-            pip install --no-cache-dir -r "$requirements" || echo " [!] pip requirements failed for $dir"
+            git clone --depth=1 "$repo" "$path" --recursive 2>/dev/null || echo " [!] Clone failed: $repo" &
         fi
     done
+    wait
+
+    # Ставим pip зависимости параллельно
+    for repo in "${NODES[@]}"; do
+        dir="${repo##*/}"
+        path="./${dir}"
+        requirements="${path}/requirements.txt"
+        if [[ -f "$requirements" ]]; then
+            pip install --no-cache-dir -q -r "$requirements" &
+        fi
+    done
+    wait
 }
 
 function provisioning_get_files() {
@@ -231,10 +195,8 @@ function provisioning_get_files() {
     local files=("$@")
 
     mkdir -p "$dir"
-    echo "Скачивание ${#files[@]} file(s) → $dir..."
 
     for url in "${files[@]}"; do
-        echo "→ $url"
         local auth_header=""
         if [[ -n "$HF_TOKEN" && "$url" =~ huggingface\.co ]]; then
             auth_header="--header=Authorization: Bearer $HF_TOKEN"
@@ -242,8 +204,7 @@ function provisioning_get_files() {
             auth_header="--header=Authorization: Bearer $CIVITAI_TOKEN"
         fi
 
-        wget $auth_header -nc --content-disposition --show-progress -e dotbytes=4M -P "$dir" "$url" || echo " [!] Download failed: $url"
-        echo ""
+        wget $auth_header -nc -q --content-disposition -P "$dir" "$url" || echo " [!] Download failed: $url"
     done
 }
 
