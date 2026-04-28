@@ -45,7 +45,6 @@ CLIP_MODELS=(
 
 CKPT_MODELS=(
     "https://huggingface.co/cyberdelia/CyberRealisticPony/resolve/main/CyberRealisticPony_V16.0_FP16.safetensors"
-    "https://huggingface.co/vilone60/flux_nsfw/resolve/main/gonzalomoXLFluxPony_v60PhotoXLDMD.safetensors"
 )
 
 FUN_MODELS=(
