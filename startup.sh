@@ -37,7 +37,6 @@ NODES=(
     "https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes"
     "https://github.com/PozzettiAndrea/ComfyUI-DepthAnythingV3"
     "https://github.com/PGCRT/CRT-Nodes"
-    "https://github.com/aisupport123/flux_nsfw"
 )
 
 CLIP_MODELS=(
