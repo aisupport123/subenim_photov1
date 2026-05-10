@@ -39,36 +39,6 @@ NODES=(
     "https://github.com/PGCRT/CRT-Nodes"
 )
 
-CLIP_MODELS=(
-    "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors"
-)
-
-CKPT_MODELS=(
-    "https://huggingface.co/cyberdelia/CyberRealisticPony/resolve/main/CyberRealisticPony_V16.0_FP16.safetensors"
-)
-
-FUN_MODELS=(
-    "https://huggingface.co/alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union-2.1/resolve/main/Z-Image-Turbo-Fun-Controlnet-Union-2.1.safetensors"
-)
-
-UNET_MODELS=(
-    "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/diffusion_models/z_image_turbo_bf16.safetensors"
-)
-
-VAE_MODELS=(
-    "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/vae/ae.safetensors"
-)
-
-LORAS=(
-    "https://huggingface.co/vilone60/bbox/resolve/main/lenovo_flux_klein9b.safetensors"
-    "https://huggingface.co/vilone60/flux_nsfw/resolve/main/Realism%20Lora%20By%20Stable%20Yogi_V3_Lite.safetensors"
-    "https://huggingface.co/vilone60/flux_nsfw/resolve/main/realisticAnatomy-by-darkHUB.safetensors"
-)
-
-DIFFUSION_MODELS=(
-    "https://huggingface.co/T5B/Z-Image-Turbo-FP8/resolve/main/z-image-turbo-fp8-e4m3fn.safetensors"
-)
-
 BBOX_MODELS=(
     "https://huggingface.co/vilone60/bbox23/resolve/main/Eyes.pt"
     "https://huggingface.co/vilone60/bbox23/resolve/main/Face.pt"
